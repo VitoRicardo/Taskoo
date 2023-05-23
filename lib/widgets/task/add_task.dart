@@ -4,7 +4,7 @@ import 'package:taskoo/utils/app_colors.dart';
 import 'package:taskoo/utils/controller.dart';
 import 'package:taskoo/utils/task_model.dart';
 import 'package:taskoo/utils/database_model.dart';
-import '../category/card_category.dart';
+import 'package:taskoo/widgets/category/mini_card_category.dart';
 
 class AddTask extends StatelessWidget {
   const AddTask({Key? key}) : super(key: key);
@@ -133,10 +133,8 @@ class _TaskAddModalState extends State<TaskAddModal> {
                         width: 10,
                       ),
                       itemBuilder: (BuildContext context, int index) {
-                        return CardCategories(
-                          category: controller.categories[index],
-                          isAddTask: true,
-                        );
+                        return MiniCardCategory(
+                            category: controller.categories[index]);
                       },
                     ),
                   ),

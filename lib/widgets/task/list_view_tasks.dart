@@ -20,8 +20,7 @@ class _ListViewTaskState extends State<ListViewTask> {
         animation: controller,
         builder: (context, child) {
           return ListView.separated(
-            clipBehavior: Clip.hardEdge,
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 15),
+            padding: const EdgeInsets.fromLTRB(0, 10, 10, 15),
             itemCount: controller.tasks.length,
             separatorBuilder: (context, index) => const SizedBox(height: 15),
             itemBuilder: (BuildContext context, int index) {
