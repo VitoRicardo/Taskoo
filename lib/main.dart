@@ -42,14 +42,12 @@ class _MyHomePageState extends State<MyHomePage> {
     /// Segmento de código que só deve ser usado apenas uma vez por aplicação para fins de testes
     // DB db = DB.instance;
     // int indexCategory = 0;
-    // int indexTask = 0;
     // categoryTask.forEach(
     //   (category, taskList) {
     //     indexCategory++;
-    //     db.insertCategory(Category(id: indexCategory, category: category));
+    //     db.insertCategory(Category(category: category));
     //
     //     for (String task in taskList) {
-    //       indexTask++;
     //       Task tarefa = Task(task: task, categoryID: indexCategory);
     //       db.insertTask(tarefa);
     //     }

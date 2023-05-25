@@ -27,16 +27,17 @@ class DB {
   static const columnTaskStatus = 'status';
 
   _initDatabase() async {
-    return await openDatabase(
-      '${await getDatabasesPath()}task.db',
-      version: 1,
-      onCreate: _onCreate,
-    );
+    return await openDatabase('${await getDatabasesPath()}task.db',
+        version: 1, onCreate: _onCreate, onConfigure: _onConfigure);
   }
 
   _onCreate(db, version) async {
     await db.execute(_category);
     await db.execute(_task);
+  }
+
+  _onConfigure(Database db) async {
+    await db.execute('PRAGMA foreign_keys = ON');
   }
 
   String get _category => '''
@@ -224,29 +225,33 @@ class DB {
 
   Future<void> deleteCategory(Category category) async {
     final Database db = await database;
+    final Controller controller = Controller.instance;
     await db.delete(
       tableCategory,
       where: '$columnId == ?',
       whereArgs: [category.id],
     );
+    controller.updateCategoryList();
+    controller.updateTaskList();
   }
 
   Future<void> deleteTask(Task task) async {
     final Database db = await database;
+    final Controller controller = Controller.instance;
     await db.delete(
       tableTask,
       where: '$columnTaskId == ?',
       whereArgs: [task.id],
     );
+    controller.updateCategoryList();
+    controller.updateTaskList();
   }
 
-  Future<void> clearCategorySelected() async {
+  Future<void> deleteAllTaskDone() async {
     final Database db = await database;
     final Controller controller = Controller.instance;
-    await db
-        .rawQuery('''UPDATE $tableCategory SET $columnCategoryStatus = 0''');
-
-    // call update in ChangeNotifier Controller
+    await db.rawQuery('''DELETE FROM $tableTask WHERE $columnTaskStatus = 1''');
     controller.updateCategoryList();
+    controller.updateTaskList();
   }
 }

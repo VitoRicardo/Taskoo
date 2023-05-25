@@ -7,7 +7,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class CardTask extends StatefulWidget {
   final Task task;
 
-  const CardTask({Key? key, required this.task}) : super(key: key);
+  CardTask({Key? key, required this.task}) : super(key: Key(task.task));
 
   @override
   State<CardTask> createState() => _CardTaskState();

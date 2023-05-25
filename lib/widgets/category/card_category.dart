@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:taskoo/utils/app_colors.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:taskoo/utils/category_model.dart';
 import 'package:taskoo/utils/database_model.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class CardCategories extends StatelessWidget {
+/**
+ * ? Numa lista de com 3 widgets, caso os 2 primeiros estejam com o slidable aberto
+ * ? e o primeiro seja deletado o segundo widget passa seu slidable para o terceiro
+ */
+
+class CardCategory extends StatelessWidget {
   final Category category;
 
-  const CardCategories({Key? key, required this.category}) : super(key: key);
+  CardCategory({Key? key, required this.category})
+      : super(key: Key(category.category));
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +37,7 @@ class CardCategories extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Slidable(
-          key: const ValueKey(1),
+          key: const ValueKey(0),
           direction: Axis.vertical,
           startActionPane: ActionPane(
             extentRatio: 1,
@@ -56,7 +63,20 @@ class CardCategories extends StatelessWidget {
                 backgroundColor: const Color(0xFF21B7CA),
                 foregroundColor: Colors.white,
                 onPressed: (BuildContext context) {
-                  print('EDTAR');
+                  showModalBottomSheet(
+                      isScrollControlled: true,
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                              bottom: Radius.circular(10),
+                              top: Radius.circular(10))),
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Padding(
+                          padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom),
+                          child: const CateforyEditModal(),
+                        );
+                      });
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -146,6 +166,127 @@ class CardCategories extends StatelessWidget {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class CateforyEditModal extends StatefulWidget {
+  const CateforyEditModal({Key? key}) : super(key: key);
+
+  @override
+  State<CateforyEditModal> createState() => _CateforyEditModalState();
+}
+
+class _CateforyEditModalState extends State<CateforyEditModal> {
+  String _inputText = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      height: 180,
+      decoration: const BoxDecoration(
+          color: AppColors.card,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Tasks
+          const Text(
+            'Edit Category',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+
+          /// TextField
+          SizedBox(
+            height: 50,
+            width: double.infinity,
+            child: TextField(
+              maxLength: 15,
+              autofocus: true,
+              onChanged: (value) {
+                setState(() {
+                  _inputText = value;
+                });
+              },
+              cursorColor: AppColors.pink,
+              decoration: const InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColors.pink,
+                    width: 2,
+                  ),
+                ),
+                hintText: "Ex: Mental Health",
+                hintStyle: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.secondaryText,
+                ),
+              ),
+              style: const TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+                color: AppColors.secondaryText,
+              ),
+              textAlign: TextAlign.start,
+            ),
+          ),
+
+          /// Add Button
+          EditDottedButton(inputText: _inputText)
+        ],
+      ),
+    );
+  }
+}
+
+class EditDottedButton extends StatefulWidget {
+  final String inputText;
+  const EditDottedButton({Key? key, required this.inputText}) : super(key: key);
+
+  @override
+  State<EditDottedButton> createState() => _EditDottedButtonState();
+}
+
+class _EditDottedButtonState extends State<EditDottedButton> {
+  @override
+  Widget build(BuildContext context) {
+    return DottedBorder(
+      borderType: BorderType.RRect,
+      radius: const Radius.circular(10),
+      padding: const EdgeInsets.all(0),
+      child: Container(
+        height: 40,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          color: AppColors.card,
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        child: TextButton(
+          style: TextButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          child: widget.inputText.isNotEmpty
+              ? const Icon(
+                  Icons.add,
+                  color: AppColors.pink,
+                )
+              : const Text('Edit Category'),
+          onPressed: () {
+            if (widget.inputText.isNotEmpty) {
+              DB db = DB.instance;
+              db.insertCategory(Category(category: widget.inputText));
+              Navigator.pop(context);
+            }
+          },
         ),
       ),
     );

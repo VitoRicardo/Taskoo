@@ -1,10 +1,15 @@
 class Category {
-  final int id;
+  final int? id;
   final String category;
   bool status;
   int activeTasks;
   int completeTasks;
-  Category({required this.id, required this.category, this.status = false, this.activeTasks = 0, this.completeTasks =0});
+  Category(
+      {this.id,
+      required this.category,
+      this.status = false,
+      this.activeTasks = 0,
+      this.completeTasks = 0});
 
   @override
   toString() {
@@ -15,7 +20,6 @@ class Category {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'category': category,
       'status': status ? 1 : 0,
     };

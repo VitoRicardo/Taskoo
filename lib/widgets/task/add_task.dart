@@ -171,7 +171,7 @@ class _TaskAddModalState extends State<TaskAddModal> {
                             db.insertTask(
                               Task(
                                   task: _inputText,
-                                  categoryID: controller.categorySelected!.id),
+                                  categoryID: controller.categorySelected!.id!),
                             );
                           }
                           Navigator.pop(context);

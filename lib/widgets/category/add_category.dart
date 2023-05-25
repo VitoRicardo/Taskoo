@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:taskoo/utils/app_colors.dart';
 import 'package:taskoo/utils/category_model.dart';
-import 'package:taskoo/utils/controller.dart';
 import 'package:taskoo/utils/database_model.dart';
 
 class AddCategory extends StatelessWidget {
@@ -44,7 +43,7 @@ class AddCategory extends StatelessWidget {
                   return Padding(
                     padding: EdgeInsets.only(
                         bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: const TaskAddModal(),
+                    child: const CategoryAddModal(),
                   );
                 });
           },
@@ -54,16 +53,15 @@ class AddCategory extends StatelessWidget {
   }
 }
 
-class TaskAddModal extends StatefulWidget {
-  const TaskAddModal({Key? key}) : super(key: key);
+class CategoryAddModal extends StatefulWidget {
+  const CategoryAddModal({Key? key}) : super(key: key);
 
   @override
-  State<TaskAddModal> createState() => _TaskAddModalState();
+  State<CategoryAddModal> createState() => _CategoryAddModalState();
 }
 
-class _TaskAddModalState extends State<TaskAddModal> {
+class _CategoryAddModalState extends State<CategoryAddModal> {
   String _inputText = '';
-  Controller controller = Controller.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +82,6 @@ class _TaskAddModalState extends State<TaskAddModal> {
           ),
 
           /// TextField
-          //TODO: TextField com alerta de Span.lenght == 0
           SizedBox(
             height: 50,
             width: double.infinity,
@@ -137,8 +134,6 @@ class AddDottedButton extends StatefulWidget {
 }
 
 class _AddDottedButtonState extends State<AddDottedButton> {
-  Controller controller = Controller.instance;
-
   @override
   Widget build(BuildContext context) {
     return DottedBorder(
@@ -168,12 +163,8 @@ class _AddDottedButtonState extends State<AddDottedButton> {
               : const Text('Create a Category'),
           onPressed: () {
             if (widget.inputText.isNotEmpty) {
-              //TODO: As categorias para serem adicionadas devem conter no máximo 15
-              Controller controller = Controller.instance;
               DB db = DB.instance;
-              int index = controller.categories.length;
-              db.insertCategory(
-                  Category(id: index + 1, category: widget.inputText));
+              db.insertCategory(Category(category: widget.inputText));
               Navigator.pop(context);
             }
           },

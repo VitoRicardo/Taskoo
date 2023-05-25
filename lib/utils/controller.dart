@@ -22,6 +22,7 @@ class Controller extends ChangeNotifier {
   }
 
   void updateCategoryList() async {
+    db.printCategory();
     _categories = await db.getAllCategories();
     anyCategorySelected = _categories.any((instance) => instance.status);
     if (anyCategorySelected) {

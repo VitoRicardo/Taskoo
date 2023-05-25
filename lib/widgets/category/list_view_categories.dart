@@ -27,7 +27,7 @@ class _ListViewCategoriesState extends State<ListViewCategories> {
             width: 10,
           ),
           itemBuilder: (BuildContext context, int index) {
-            return CardCategories(
+            return CardCategory(
               category: controller.categories[index],
             );
           },

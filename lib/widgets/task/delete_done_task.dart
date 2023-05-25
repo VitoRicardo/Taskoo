@@ -1,17 +1,15 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:taskoo/utils/app_colors.dart';
-import 'package:taskoo/utils/controller.dart';
+import 'package:taskoo/utils/database_model.dart';
 
 //TODO: Create a PopUp alerting the user that he is trying to delete all marked items
-//TODO: Make the animations look smooth "Bouncing animation"
 
 class DeleteDoneTask extends StatelessWidget {
   const DeleteDoneTask({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Controller controller = Controller.instance;
     return DottedBorder(
       borderType: BorderType.RRect,
       radius: const Radius.circular(10),
@@ -33,7 +31,8 @@ class DeleteDoneTask extends StatelessWidget {
               alignment: AlignmentDirectional.center,
               padding: EdgeInsets.zero),
           onPressed: () {
-            // controller.deleteDone();
+            final DB db = DB.instance;
+            db.deleteAllTaskDone();
           },
           child: const Icon(
             Icons.restore_from_trash_sharp,
