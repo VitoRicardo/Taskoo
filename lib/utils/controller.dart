@@ -22,7 +22,6 @@ class Controller extends ChangeNotifier {
   }
 
   void updateCategoryList() async {
-    db.printCategory();
     _categories = await db.getAllCategories();
     anyCategorySelected = _categories.any((instance) => instance.status);
     if (anyCategorySelected) {
@@ -31,7 +30,3 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-/// Nenhuma Categoria estava selecionada e Cat1 foi selecionada  >> anyCategorySelected = true // categorySelected = Cat1
-/// Cat1 estava selecionada e foi novamente selecionada >> anyCategorySelected = false // categorySelected = NULL
-/// Cat1 estava selecionada e Cat2 foi  selecionada >> anyCategorySelected = true // categorySelected = Cat2

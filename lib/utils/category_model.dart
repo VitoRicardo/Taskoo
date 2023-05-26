@@ -1,6 +1,6 @@
 class Category {
   final int? id;
-  final String category;
+  String category;
   bool status;
   int activeTasks;
   int completeTasks;

@@ -209,6 +209,7 @@ class DB {
     );
     // call update in ChangeNotifier Controller
     controller.updateCategoryList();
+    controller.updateTaskList();
   }
 
   Future<void> editTask(Task task) async {
@@ -220,6 +221,7 @@ class DB {
       where: '$columnTaskId == ?',
       whereArgs: [task.id],
     );
+    controller.updateCategoryList();
     controller.updateTaskList();
   }
 

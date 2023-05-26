@@ -1,7 +1,7 @@
 class Task {
   final int? id;
-  final String task;
-  final int categoryID;
+  String task;
+  int categoryID;
   String categoryName;
   bool status = false;
   Task(

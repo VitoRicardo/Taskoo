@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:taskoo/widgets/DottedPopUpButton.dart';
 import 'package:taskoo/utils/app_colors.dart';
 import 'package:taskoo/utils/category_model.dart';
 import 'package:taskoo/utils/database_model.dart';
@@ -116,59 +117,22 @@ class _CategoryAddModalState extends State<CategoryAddModal> {
               textAlign: TextAlign.start,
             ),
           ),
-
-          /// Add Button
-          AddDottedButton(inputText: _inputText)
-        ],
-      ),
-    );
-  }
-}
-
-class AddDottedButton extends StatefulWidget {
-  final String inputText;
-  const AddDottedButton({Key? key, required this.inputText}) : super(key: key);
-
-  @override
-  State<AddDottedButton> createState() => _AddDottedButtonState();
-}
-
-class _AddDottedButtonState extends State<AddDottedButton> {
-  @override
-  Widget build(BuildContext context) {
-    return DottedBorder(
-      borderType: BorderType.RRect,
-      radius: const Radius.circular(10),
-      padding: const EdgeInsets.all(0),
-      child: Container(
-        height: 40,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: AppColors.card,
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
-          ),
-        ),
-        child: TextButton(
-          style: TextButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+          DottedPopUpButton(
+            inputTextIsNotEmpty: _inputText.isNotEmpty,
+            textButton: 'Create a Category',
+            icon: const Icon(
+              Icons.add,
+              color: AppColors.pink,
             ),
-          ),
-          child: widget.inputText.isNotEmpty
-              ? const Icon(
-                  Icons.add,
-                  color: AppColors.pink,
-                )
-              : const Text('Create a Category'),
-          onPressed: () {
-            if (widget.inputText.isNotEmpty) {
-              DB db = DB.instance;
-              db.insertCategory(Category(category: widget.inputText));
-              Navigator.pop(context);
-            }
-          },
-        ),
+            onPress: () {
+              if (_inputText.isNotEmpty) {
+                DB db = DB.instance;
+                db.insertCategory(Category(category: _inputText));
+                Navigator.pop(context);
+              }
+            },
+          )
+        ],
       ),
     );
   }

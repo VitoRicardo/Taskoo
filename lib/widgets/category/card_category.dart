@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taskoo/utils/app_colors.dart';
-import 'package:dotted_border/dotted_border.dart';
+import 'package:taskoo/widgets/DottedPopUpButton.dart';
 import 'package:taskoo/utils/category_model.dart';
 import 'package:taskoo/utils/database_model.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -74,7 +74,7 @@ class CardCategory extends StatelessWidget {
                         return Padding(
                           padding: EdgeInsets.only(
                               bottom: MediaQuery.of(context).viewInsets.bottom),
-                          child: const CateforyEditModal(),
+                          child: CategoryEditModal(category: category),
                         );
                       });
                 },
@@ -172,14 +172,16 @@ class CardCategory extends StatelessWidget {
   }
 }
 
-class CateforyEditModal extends StatefulWidget {
-  const CateforyEditModal({Key? key}) : super(key: key);
+class CategoryEditModal extends StatefulWidget {
+  final Category category;
+
+  const CategoryEditModal({Key? key, required this.category}) : super(key: key);
 
   @override
-  State<CateforyEditModal> createState() => _CateforyEditModalState();
+  State<CategoryEditModal> createState() => _CategoryEditModalState();
 }
 
-class _CateforyEditModalState extends State<CateforyEditModal> {
+class _CategoryEditModalState extends State<CategoryEditModal> {
   String _inputText = '';
 
   @override
@@ -213,15 +215,15 @@ class _CateforyEditModalState extends State<CateforyEditModal> {
                 });
               },
               cursorColor: AppColors.pink,
-              decoration: const InputDecoration(
-                enabledBorder: OutlineInputBorder(
+              decoration: InputDecoration(
+                enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: AppColors.pink,
                     width: 2,
                   ),
                 ),
-                hintText: "Ex: Mental Health",
-                hintStyle: TextStyle(
+                hintText: 'Before: ${widget.category.category}',
+                hintStyle: const TextStyle(
                   fontSize: 14.0,
                   fontWeight: FontWeight.bold,
                   color: AppColors.secondaryText,
@@ -236,58 +238,22 @@ class _CateforyEditModalState extends State<CateforyEditModal> {
             ),
           ),
 
-          /// Add Button
-          EditDottedButton(inputText: _inputText)
+          DottedPopUpButton(
+              inputTextIsNotEmpty: _inputText.isNotEmpty,
+              textButton: 'Edit Category',
+              icon: const Icon(
+                Icons.edit,
+                color: AppColors.pink,
+              ),
+              onPress: () {
+                if (_inputText.isNotEmpty) {
+                  DB db = DB.instance;
+                  widget.category.category = _inputText;
+                  db.editCategory(widget.category);
+                  Navigator.pop(context);
+                }
+              })
         ],
-      ),
-    );
-  }
-}
-
-class EditDottedButton extends StatefulWidget {
-  final String inputText;
-  const EditDottedButton({Key? key, required this.inputText}) : super(key: key);
-
-  @override
-  State<EditDottedButton> createState() => _EditDottedButtonState();
-}
-
-class _EditDottedButtonState extends State<EditDottedButton> {
-  @override
-  Widget build(BuildContext context) {
-    return DottedBorder(
-      borderType: BorderType.RRect,
-      radius: const Radius.circular(10),
-      padding: const EdgeInsets.all(0),
-      child: Container(
-        height: 40,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: AppColors.card,
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
-          ),
-        ),
-        child: TextButton(
-          style: TextButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          child: widget.inputText.isNotEmpty
-              ? const Icon(
-                  Icons.add,
-                  color: AppColors.pink,
-                )
-              : const Text('Edit Category'),
-          onPressed: () {
-            if (widget.inputText.isNotEmpty) {
-              DB db = DB.instance;
-              db.insertCategory(Category(category: widget.inputText));
-              Navigator.pop(context);
-            }
-          },
-        ),
       ),
     );
   }

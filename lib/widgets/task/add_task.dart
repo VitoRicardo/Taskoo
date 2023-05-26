@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskoo/widgets/DottedPopUpButton.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:taskoo/utils/app_colors.dart';
 import 'package:taskoo/utils/controller.dart';
@@ -32,18 +33,19 @@ class AddTask extends StatelessWidget {
           ),
           onPressed: () {
             showModalBottomSheet(
-                isScrollControlled: true,
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                        bottom: Radius.circular(10), top: Radius.circular(10))),
-                context: context,
-                builder: (BuildContext context) {
-                  return Padding(
-                    padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: const TaskAddModal(),
-                  );
-                });
+              isScrollControlled: true,
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(10), top: Radius.circular(10))),
+              context: context,
+              builder: (BuildContext context) {
+                return Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: const TaskAddModal(),
+                );
+              },
+            );
           },
         ),
       ),
@@ -138,47 +140,28 @@ class _TaskAddModalState extends State<TaskAddModal> {
                       },
                     ),
                   ),
-                  DottedBorder(
-                    borderType: BorderType.RRect,
-                    radius: const Radius.circular(10),
-                    padding: const EdgeInsets.all(0),
-                    child: Container(
-                      height: 40,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        color: AppColors.card,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        child: controller.anyCategorySelected
-                            ? const Icon(
-                                Icons.add,
-                                color: AppColors.pink,
-                              )
-                            : const Text('Select a Category'),
-                        onPressed: () {
-                          DB db = DB.instance;
-                          Controller controller = Controller.instance;
-                          if (controller.anyCategorySelected &&
-                              _inputText.isNotEmpty) {
-                            db.insertTask(
-                              Task(
-                                  task: _inputText,
-                                  categoryID: controller.categorySelected!.id!),
-                            );
-                          }
-                          Navigator.pop(context);
-                        },
-                      ),
+                  DottedPopUpButton(
+                    inputTextIsNotEmpty:
+                        _inputText.isNotEmpty && controller.anyCategorySelected,
+                    textButton: 'Create Task & Select a Category',
+                    icon: const Icon(
+                      Icons.add,
+                      color: AppColors.pink,
                     ),
-                  )
+                    onPress: () {
+                      DB db = DB.instance;
+                      Controller controller = Controller.instance;
+                      if (controller.anyCategorySelected &&
+                          _inputText.isNotEmpty) {
+                        db.insertTask(
+                          Task(
+                              task: _inputText,
+                              categoryID: controller.categorySelected!.id!),
+                        );
+                      }
+                      Navigator.pop(context);
+                    },
+                  ),
                 ],
               );
             },
