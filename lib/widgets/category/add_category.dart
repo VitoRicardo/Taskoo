@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:taskoo/widgets/DottedPopUpButton.dart';
+import 'package:taskoo/widgets/dotted_pop_up_button.dart';
 import 'package:taskoo/utils/app_colors.dart';
 import 'package:taskoo/utils/category_model.dart';
 import 'package:taskoo/utils/database_model.dart';
@@ -76,13 +76,10 @@ class _CategoryAddModalState extends State<CategoryAddModal> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Tasks
           const Text(
             'Add Category',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-
-          /// TextField
           SizedBox(
             height: 50,
             width: double.infinity,

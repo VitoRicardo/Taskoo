@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:taskoo/utils/app_colors.dart';
-import 'package:taskoo/widgets/DottedPopUpButton.dart';
+import 'package:taskoo/widgets/dotted_pop_up_button.dart';
 import 'package:taskoo/utils/category_model.dart';
 import 'package:taskoo/utils/database_model.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-
-/**
- * ? Numa lista de com 3 widgets, caso os 2 primeiros estejam com o slidable aberto
- * ? e o primeiro seja deletado o segundo widget passa seu slidable para o terceiro
- */
 
 class CardCategory extends StatelessWidget {
   final Category category;
@@ -196,13 +191,10 @@ class _CategoryEditModalState extends State<CategoryEditModal> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Tasks
           const Text(
             'Edit Category',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-
-          /// TextField
           SizedBox(
             height: 50,
             width: double.infinity,
@@ -237,7 +229,6 @@ class _CategoryEditModalState extends State<CategoryEditModal> {
               textAlign: TextAlign.start,
             ),
           ),
-
           DottedPopUpButton(
               inputTextIsNotEmpty: _inputText.isNotEmpty,
               textButton: 'Edit Category',

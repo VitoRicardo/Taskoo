@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taskoo/utils/app_colors.dart';
 import 'package:taskoo/widgets/category/mini_card_category.dart';
-import 'package:taskoo/widgets/DottedPopUpButton.dart';
+import 'package:taskoo/widgets/dotted_pop_up_button.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:taskoo/utils/task_model.dart';
 import 'package:taskoo/utils/controller.dart';
@@ -9,7 +9,6 @@ import 'package:taskoo/utils/database_model.dart';
 
 class CardTask extends StatefulWidget {
   final Task task;
-
   CardTask({Key? key, required this.task}) : super(key: Key(task.task));
 
   @override
@@ -160,7 +159,6 @@ class _TaskEditModalState extends State<TaskEditModal> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Tasks
           const Text(
             'Edit Task',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -200,8 +198,6 @@ class _TaskEditModalState extends State<TaskEditModal> {
               textAlign: TextAlign.start,
             ),
           ),
-
-          /// ListView Horizontal of Categories
           AnimatedBuilder(
             animation: controller,
             builder: (context, child) {

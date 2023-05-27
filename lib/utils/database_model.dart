@@ -4,11 +4,8 @@ import 'package:taskoo/utils/controller.dart';
 import 'package:taskoo/utils/task_model.dart';
 
 class DB {
-  //Construtor com acesso privado
   DB._();
-  //Criar uma instância de DB
   static final DB instance = DB._();
-  //Instância do SQLite
   static Database? _database;
 
   get database async {
@@ -79,34 +76,6 @@ class DB {
     controller.updateCategoryList();
     controller.updateTaskList();
   }
-
-  /// Debug Function
-  Future<void> printTasks() async {
-    final db = await database;
-    final tasks = await db.query(tableTask);
-    print('Tasks:');
-    tasks.forEach((task) {
-      print('ID: ${task[columnTaskId]}');
-      print('Name: ${task[columnTask]}');
-      print('Category ID: ${task[columnCategoryId]}');
-      print('Status: ${task[columnTaskStatus]}');
-      print('------------------');
-    });
-  }
-
-  Future<void> printCategory() async {
-    final db = await database;
-    final categories = await db.query(tableCategory);
-    print('Category:');
-    categories.forEach((category) {
-      print('ID: ${category[columnId]}');
-      print('Category: ${category[columnCategory]}');
-      print('Status: ${category[columnCategoryStatus]}');
-      print('------------------');
-    });
-  }
-
-  ///
 
   Future<List<Category>> getAllCategories() async {
     final Database db = await database;
@@ -186,28 +155,12 @@ class DB {
   Future<void> editCategory(Category category) async {
     final Database db = await database;
     final Controller controller = Controller.instance;
-
-    // final List<Map<String, dynamic>> maps;
-    // maps = await db.rawQuery('''UPDATE $tableCategory SET status = CASE
-    // WHEN $columnId = ${category.id} THEN 1
-    // ELSE 0
-    // END;
-    // ''');
-
-    // maps = await db.rawQuery('''SELECT Task.*
-    // FROM $tableTask
-    // LEFT JOIN $tableCategory ON $tableTask.$columnCategoryId = $tableCategory.$columnId
-    // WHERE $tableCategory.$columnCategoryStatus = 1
-    //   OR (NOT EXISTS (SELECT 1 FROM $tableCategory WHERE $columnCategoryStatus = 1)
-    //   AND $tableCategory.$columnCategoryStatus = 0);''');
-
     await db.update(
       tableCategory,
       category.toMap(),
       where: '$columnId == ?',
       whereArgs: [category.id],
     );
-    // call update in ChangeNotifier Controller
     controller.updateCategoryList();
     controller.updateTaskList();
   }

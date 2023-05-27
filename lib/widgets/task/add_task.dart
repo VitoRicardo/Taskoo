@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskoo/widgets/DottedPopUpButton.dart';
+import 'package:taskoo/widgets/dotted_pop_up_button.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:taskoo/utils/app_colors.dart';
 import 'package:taskoo/utils/controller.dart';
@@ -75,14 +75,11 @@ class _TaskAddModalState extends State<TaskAddModal> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Tasks
           const Text(
             'Add Task',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
-
-          /// TextField
           SizedBox(
             height: 50,
             width: double.infinity,
@@ -117,8 +114,6 @@ class _TaskAddModalState extends State<TaskAddModal> {
               textAlign: TextAlign.start,
             ),
           ),
-
-          /// ListView Horizontal of Categories
           AnimatedBuilder(
             animation: controller,
             builder: (context, child) {

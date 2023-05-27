@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:taskoo/utils/app_colors.dart';
 import 'package:taskoo/utils/database_model.dart';
 
-//TODO: Create a PopUp alerting the user that he is trying to delete all marked items
-
 class DeleteDoneTask extends StatelessWidget {
   const DeleteDoneTask({super.key});
 

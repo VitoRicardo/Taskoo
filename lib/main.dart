@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'utils/app_colors.dart';
 import 'widgets/category/add_category.dart';
 import 'widgets/task/add_task.dart';
 import 'widgets/category/list_view_categories.dart';
 import 'widgets/task/list_view_tasks.dart';
-import 'utils/controller.dart';
 import 'widgets/task/delete_done_task.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(const MyApp());
 }
 
@@ -35,32 +39,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    Controller controller = Controller.instance;
-
-    /// Segmento de código que só deve ser usado apenas uma vez por aplicação para fins de testes
-    // DB db = DB.instance;
-    // int indexCategory = 0;
-    // categoryTask.forEach(
-    //   (category, taskList) {
-    //     indexCategory++;
-    //     db.insertCategory(Category(category: category));
-    //
-    //     for (String task in taskList) {
-    //       Task tarefa = Task(task: task, categoryID: indexCategory);
-    //       db.insertTask(tarefa);
-    //     }
-    //   },
-    // );
-
-    ///
-
-    controller.updateCategoryList();
-    controller.updateTaskList();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
