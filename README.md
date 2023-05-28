@@ -15,7 +15,7 @@ já que seu desenvolvimento, a princípio simples, possuem desafios que serão r
 ## Tecnologias Utilizadas
 
 **Gerencia de Estado do próprio Flutter:**
-  - Apesar do Flutter possui excelentes pacotes de gerência de estado, como [MobX](https://pub.dev/packages/mobx), [BLOC](https://pub.dev/packages/bloc) e etc, 
+  - Apesar do Flutter possui excelentes pacotes de gerência de estado, como [MobX](https://pub.dev/packages/mobx) e [BLOC](https://pub.dev/packages/bloc), 
     aprender a trabalhar com o pacote padrão de gerência do Flutter é essencial para a compreensão do comportamento do Flutter mediante mudanças de estado.
 
 **Replicação de UI com algumas modificações:**
