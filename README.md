@@ -2,6 +2,8 @@
 
 Taskoo é uma lista de tarefas com divisão entre Tarefas e Categorias
 
+![](https://github.com/VitoRicardo/Images/blob/main/Taskoo/TaskooGIF.gif)
+
 ## Resumo & Motivos
 
 Esse projeto foi criado com o intuito de testar meus conhechimentos básicos em Flutter, tendo em vista que app de Todo List são ideias para iniciantes,
@@ -32,5 +34,5 @@ já que seu desenvolvimento, a princípio simples, possuem desafios que serão r
     se deu pela sua capacidade de fazer consultas avançadas e estruturar dados mais complexos, além de requisitar 
     conhecimento de sintaxe da linguagem SQL, conhecimento esse fundamental para qualquer desenvolvedor. 
     
-![](https://github.com/VitoRicardo/Images/blob/main/Taskoo/TaskooGIF.gif)
+
   
