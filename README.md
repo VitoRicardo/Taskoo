@@ -31,4 +31,6 @@ já que seu desenvolvimento, a princípio simples, possuem desafios que serão r
   - Desdo início o app foi pensado com permanência de dados local e a escolha do [Sqflite](https://pub.dev/packages/flutter_slidable) 
     se deu pela sua capacidade de fazer consultas avançadas e estruturar dados mais complexos, além de requisitar 
     conhecimento de sintaxe da linguagem SQL, conhecimento esse fundamental para qualquer desenvolvedor. 
+    
+    ![]([Taskoo/TaskooGIF.gif](https://github.com/VitoRicardo/Images/blob/main/Taskoo/TaskooGIF.gif)
   
