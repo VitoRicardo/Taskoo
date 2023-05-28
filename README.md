@@ -22,7 +22,6 @@ já que seu desenvolvimento, a princípio simples, possuem desafios que serão r
   - O Design escolhido para me inspirar foi criado por [Alex Arutuynov](https://dribbble.com/shots/14100356-ToDo-App-UI) 
 
  **Modificações Relativas ao Design:**
-  - Obvio que é aqui
   - O Drawer não foi criado, tendo em vista que o Mockup não demonstra o que seriam essa funções ou páginas
   - A animação ao deletar um tarefa não foi criada, pois o objetivo desse app são conhecimentos básicos
   - A edição e remoção de tarefas ou categorias foram embutidas em um Slidable Widget, proveniente da biblioteca [flutter_slidable](https://pub.dev/packages/flutter_slidable)
