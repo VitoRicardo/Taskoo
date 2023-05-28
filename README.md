@@ -24,8 +24,8 @@ já que seu desenvolvimento, a princípio simples, possuem desafios que serão r
  **Modificações Relativas ao Design:**
   - O Drawer não foi criado, tendo em vista que o Mockup não demonstra o que seriam as funções ou páginas embutidas nele
   - A animação ao deletar um tarefa não foi criada, pois o objetivo desse app são conhecimentos básicos
-  - A edição e remoção de tarefas ou categorias foram embutidas em um Slidable Widget, proveniente da biblioteca [flutter_slidable](https://pub.dev/packages/flutter_slidable)
-  - Foi criado um botão de Deletar todas as tarefas marcadas como "Realizado", esse por sua vez simbolizado por uma lixeira com seta apontando para cima
+  - A *Edição* e *Remoção* de tarefas ou categorias foram embutidas em um Slidable Widget, proveniente da biblioteca [flutter_slidable](https://pub.dev/packages/flutter_slidable)
+  - Foi criado um botão de *Deletar todas as tarefas marcadas como "Realizado"*, esse por sua vez simbolizado por uma lixeira com seta apontando para cima
 
 **Permanência de Dados com Uso do pacote SQFLITE:**
   - Desdo início o app foi pensado com permanência de dados local e a escolha do [Sqflite](https://pub.dev/packages/flutter_slidable) 
