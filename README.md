@@ -5,7 +5,7 @@ Taskoo é uma lista de tarefas com divisão entre Tarefas e Categorias
 ## Resumo & Motivos
 
 Esse projeto foi criado com o intuito de testar meus conhechimentos básicos em Flutter, tendo em vista que app de Todo List são ideias para iniciantes,
-já que seu desenvolvimento, a princípio simples, possuem desafios que serão recorrentes na carreirade um desenvolvedor, tais como :
+já que seu desenvolvimento, a princípio simples, possuem desafios que serão recorrentes na carreira de um desenvolvedor, tais como :
   - Compreensão e aplicabilidade do CRUD
   - Greneciamento de Estado
   - Design de UI
@@ -15,8 +15,7 @@ já que seu desenvolvimento, a princípio simples, possuem desafios que serão r
 ## Tecnologias Utilizadas
 
 *Gerencia de Estado do prórpio Flutter:*
-  Apesar do Flutter possui excelentes pacotes de gerencia de estado, como MobX, BLOC e etx, aprender a trabalhar como o pacote padrão de gerência do Flutter
-  é essencial para a compreensão de como o Flutter compreende mudaças de estado.
+  Apesar do Flutter possui excelentes pacotes de gerência de estado, como [MobX](https://pub.dev/packages/mobx), [BLOC](https://pub.dev/packages/bloc) e etc, aprender a trabalhar com o pacote padrão de gerência do Flutter é essencial para a compreensão do comportamento do Flutter mediante mudanças de estado.
 
 *Replicação de UI com algumas modificações:*
   O Design escolhido para me inspirar foi criado por [Alex Arutuynov](https://dribbble.com/shots/14100356-ToDo-App-UI) 
@@ -29,5 +28,5 @@ já que seu desenvolvimento, a princípio simples, possuem desafios que serão r
   
 *Permanência de Dados com Uso do pacote SQFLITE:*
   Desdo início o app foi pensado com permanência de dados local e a escolha do [Sqflite](https://pub.dev/packages/flutter_slidable) se deu pela sua capacidade de fazer 
-  consulta e estruturar dados mais complexos, além de requisitar conhecimento de sintaxe da linguagem SQL, conhecimento esse fundamental para qualquer desenvolvedor. 
+  consultas avançadas e estruturar dados mais complexos, além de requisitar conhecimento de sintaxe da linguagem SQL, conhecimento esse fundamental para qualquer desenvolvedor. 
   
