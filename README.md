@@ -14,7 +14,7 @@ já que seu desenvolvimento, a princípio simples, possuem desafios que serão r
   - Interação com o usuário
   - Permanência de dados
 
-## Tecnologias Utilizadas
+## Tecnologias Utilizadas & Modificações
 
 **Gerencia de Estado do próprio Flutter:**
   - Apesar do Flutter possui excelentes pacotes de gerência de estado, como [MobX](https://pub.dev/packages/mobx) e [BLOC](https://pub.dev/packages/bloc), 
