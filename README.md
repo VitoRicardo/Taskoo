@@ -9,7 +9,7 @@ Taskoo é uma lista de tarefas com divisão entre Tarefas e Categorias
 Esse projeto foi criado com o intuito de testar meus conhechimentos básicos em Flutter, tendo em vista que app de Todo List são ideias para iniciantes,
 já que seu desenvolvimento, a princípio simples, possuem desafios que serão recorrentes na carreira de um desenvolvedor, tais como :
   - Compreensão e aplicabilidade do CRUD
-  - Greneciamento de Estado
+  - Gereciamento de Estado
   - Design de UI
   - Interação com o usuário
   - Permanência de dados
